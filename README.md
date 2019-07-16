@@ -32,7 +32,7 @@ We could use zip compression to approximate optimal encoding! ^[Note: in particu
 
 We can train one compressor for each class of digits. We do this by separating our training data by digit class, so we have 10 files `digit_0.training`, `digit_1.training`, …, `digit_9.training`, and we compress each using zip compression, and memorize the compressed size.
 
-When we want to classify a test image of a digit, given in a file `test.image`, we simply append it to each training file to obtain test files: `digit_0.test`, `digit_1.test`, …, `digit_9.test`, which we then compress as well. We compute the difference in compressed size to the training file, which tells us how well the test image was compressed with the training data for the different digits. The digit with the highest compression (smalled compressed difference in size) is our predicted class. 
+When we want to classify a test image of a digit, given in a file `test.image`, we simply append it to each training file to obtain test files: `digit_0.test`, `digit_1.test`, …, `digit_9.test`, which we then compress as well. We compute the difference in compressed size to the training file, which tells us how well the test image was compressed with the training data for the different digits. The digit class with the highest compression (smalled compressed size difference) is our prediction. 
 
 Because zip compression makes use of data statistics, it is more likely that the test image will be compressed better when it is appended to the training data of digit that it represents. 
 
