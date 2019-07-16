@@ -101,6 +101,6 @@ For simplicity, I have implemented a `ZipCompressionClassifier` that is compatib
 
 For fun, I have also added a BASH version using `gzip`. To reproduce the results on the first 10 entries from MNIST's test data, run:
 ```bash
-for test_file in data/*image; do ./classify.sh $test_file; done
+for test_file in data/*.image; do ./classify.sh $test_file; done
 ```
 
