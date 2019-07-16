@@ -1,6 +1,6 @@
 # MNIST by zip
 
-**tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST). Code available: [https://github.com/BlackHC/mnist_by_zip](https://github.com/BlackHC/mnist_by_zip).**
+**tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST).
 
 Learning means reducing information into knowledge. Through learning, we build concise models of the world that helps us navigate it. We reduce cognitive load by finding representations of information that require less "storage" for common events than for rare ones.
 
@@ -8,8 +8,7 @@ This insight connects (machine) learning, information theory, probability theory
 
 ## A bit of machine learning, probability theory, and information theory
 
-In machine learning, we want to solve problems like recognizing hand-written digits in the [MNIST dataset](http://yann.lecun.com/exdb/mnist/). Using probability theory, we can express this as finding the digit class $y$ that maximizes $p(y|x, D)$,
-the probability of the test image x being of that class given the information in our dataset.
+In machine learning, we want to solve problems like recognizing hand-written digits in the [MNIST dataset](http://yann.lecun.com/exdb/mnist/). Using probability theory, we can express this as finding the digit class that maximizes the probability of the test image being of that class given the information in our dataset.
  
 Information theory is concerned with encoding information. An important result is that given a probability distribution that tells us how often or likely certain events $x$ occur, there is an optimal encoding. The more likely an event, the fewer bits it will use in this encoding.
 
