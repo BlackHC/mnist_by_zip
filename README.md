@@ -1,6 +1,6 @@
 # MNIST by zip
 
-**tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST).
+**tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST).**
 
 Learning means reducing information into knowledge. Through learning, we build concise models of the world that helps us navigate it. We reduce cognitive load by finding representations of information that require less "storage" for common events than for rare ones.
 
@@ -92,7 +92,7 @@ We are uncertain whether this is an appraisal of zip compression or an indictmen
 
 ## Acknowledgements
 
-Thanks to Christopher Mattern (from DeepMind) for mentioning this to me a couple of years ago at Friday Drinks and to [Owen Campbell Moore](https://twitter.com/owencm) for turning a random afternoon conversation into a tiny hack project later. I have always remembered it as a fun fact and was surprised when no one else knew about it either. So, here we go. :)
+Thanks to Christopher Mattern (from DeepMind) for mentioning this to me (as a joke?) a couple of years ago at Friday Drinks and to [Owen Campbell Moore](https://twitter.com/owencm) for turning a random afternoon conversation into a tiny hack project later. I have always remembered it as a fun fact and was surprised when no one else knew about it either. So, here we go. :)
 
 ## Code
 
