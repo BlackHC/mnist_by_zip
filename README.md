@@ -1,6 +1,8 @@
 # MNIST by zip
 
-**tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST).
+For minimally more maths, see the blog post: https://www.blackhc.net/blog/2019/mnist-by-zip.html.
+
+**tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST).**
 
 Learning means reducing information into knowledge. Through learning, we build concise models of the world that helps us navigate it. We reduce cognitive load by finding representations of information that require less "storage" for common events than for rare ones.
 
@@ -10,7 +12,7 @@ This insight connects (machine) learning, information theory, probability theory
 
 In machine learning, we want to solve problems like recognizing hand-written digits in the [MNIST dataset](http://yann.lecun.com/exdb/mnist/). Using probability theory, we can express this as finding the digit class that maximizes the probability of the test image being of that class given the information in our dataset.
  
-Information theory is concerned with encoding information. An important result is that given a probability distribution that tells us how often or likely certain events $x$ occur, there is an optimal encoding. The more likely an event, the fewer bits it will use in this encoding.
+Information theory is concerned with encoding information. An important result is that given a probability distribution that tells us how often or likely certain events occur, there is an optimal encoding: the more likely an event, the fewer bits will be used in this encoding.
 
 In the case of hand-written digits, we can look at 10 different probability distributions: one for each class of digits. We then want to find the class that has minimal encoding length for a given image.
 
@@ -30,7 +32,7 @@ We could use zip compression to approximate optimal encoding! ^[Note: in particu
 
 We can train one compressor for each class of digits. We do this by separating our training data by digit class, so we have 10 files `digit_0.training`, `digit_1.training`, …, `digit_9.training`, and we compress each using zip compression, and memorize the compressed size.
 
-When we want to classify a test image of a digit, given in a file `image.data`, we simply append it to each training file to obtain test files: `digit_0.test`, `digit_1.test`, …, `digit_9.test`, which we then compress as well. We compute the difference in compressed size to the training file, which tells us how well the test image was compressed with the training data for the different digits. 
+When we want to classify a test image of a digit, given in a file `test.image`, we simply append it to each training file to obtain test files: `digit_0.test`, `digit_1.test`, …, `digit_9.test`, which we then compress as well. We compute the difference in compressed size to the training file, which tells us how well the test image was compressed with the training data for the different digits. The digit class with the highest compression (smalled compressed size difference) is our prediction. 
 
 Because zip compression makes use of data statistics, it is more likely that the test image will be compressed better when it is appended to the training data of digit that it represents. 
 
@@ -92,7 +94,7 @@ We are uncertain whether this is an appraisal of zip compression or an indictmen
 
 ## Acknowledgements
 
-Thanks to Christopher Mattern (from DeepMind) for mentioning this to me a couple of years ago at Friday Drinks and to [Owen Campbell Moore](https://twitter.com/owencm) for turning a random afternoon conversation into a tiny hack project later. I have always remembered it as a fun fact and was surprised when no one else knew about it either. So, here we go. :)
+Thanks to Christopher Mattern (from DeepMind) for mentioning this to me (as a joke?) a couple of years ago at Friday Drinks and to [Owen Campbell Moore](https://twitter.com/owencm) for turning a random afternoon conversation into a tiny hack project later. I have always remembered it as a fun fact and was surprised when no one else knew about it either. So, here we go. :)
 
 ## Code
 
