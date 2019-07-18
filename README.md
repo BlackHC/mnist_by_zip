@@ -86,6 +86,46 @@ weighted avg       0.49      0.45      0.45     10000
 ```
 ![Fig 2. Confusion matrix for the zip compression classifier on a binarized MNIST's test set.](assets/confusion_matrix_45.png)
 
+### Binarized MNIST with chunked compressors 
+
+@ylecun pointed out that 45% accuracy is not exactly great.
+
+Looking at how zip's [deflate algorithm](https://www.w3.org/Graphics/PNG/RFC-1951) works, we learn that it independently compresses blocks of up to 64 KiB size.
+This means that separating the training set by class and compressing it as one will only take into account the last 82 (~ 65536/28/28 - 1) training samples for each class.
+
+That is not a lot.
+
+One way to improve on this is to chunk the training data per class into chunks of fewer samples and measure how each of these compresses the test image.
+
+To combine these, we can either compute the average of the compressed lengths, or we can treat the compressed length as an information length which is an upper bound on the optimal encoding length.
+The optimal encoding length is the negative logarithm of the conditional probability, and we can average those using [logsumexp](https://docs.scipy.org/doc/scipy-0.19.0/reference/generated/scipy.misc.logsumexp.html).
+
+Using the latter, we achieve 74% accuracy on binarized MNIST.
+
+```
+Classification report for classifier ChunkedZipCompressionClassifier(max_samples_per_compressor=64):
+              precision    recall  f1-score   support
+
+           0       0.60      0.89      0.72       980
+           1       0.97      0.95      0.96      1135
+           2       0.81      0.48      0.60      1032
+           3       0.60      0.74      0.66      1010
+           4       0.91      0.77      0.83       982
+           5       0.73      0.45      0.56       892
+           6       0.92      0.72      0.81       958
+           7       0.80      0.68      0.74      1028
+           8       0.69      0.80      0.74       974
+           9       0.59      0.85      0.70      1009
+
+   accuracy                            0.74     10000
+   macro avg       0.76      0.73      0.73     10000
+weighted avg       0.76      0.74      0.74     10000
+```
+![Fig 3. Confusion matrix for the chunked zip compression classifier on a binarized MNIST's test set.](assets/confusion_matrix_74.png) 
+
+From the confusion matrix, we can see quite clearly that the classes 2, 3, and 5 are being confused the most, which makes sense
+given their similar sub-structures. 
+
 ### Conclusion
 
 Using zip compression as a classifier is significantly better than random (10% expected accuracy). As another comparison, we have also implemented a classifier that just counts the number of pixels in images for different digits and picks the nearest class for a test image: it achieves 20% accuracy. Overall, zip compression can capture some of MNIST's structure to make somewhat informed classification decisions.
