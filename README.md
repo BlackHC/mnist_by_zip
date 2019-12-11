@@ -1,6 +1,6 @@
 # MNIST by zip
 
-For minimally more maths, see the blog post: <https://www.blackhc.net/blog/2019/mnist-by-zip.html>.
+For minimally more maths, see the blog post: <https://www.blackhc.net/blog/2019/mnist-by-zip/>.
 
 **tl;dr: We can use compression algorithms (like the well-known zip file compression) for machine learning purposes, specifically for classifying hand-written digits (MNIST).**
 
